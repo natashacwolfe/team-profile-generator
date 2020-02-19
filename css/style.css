@@ -1,12 +1,53 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+
+
+}
+
 /* title top of profile page */
 
-.title {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+
+.header  {
+    flex: 1 100%;
+    text-align: center;
     padding: 1rem 0;
     background-color: rgba(243, 156, 18, 1);
-    font-family: 'Roboto', sans-serif;
-    font-size: 6rem;
-    color: rgba(232, 232, 232, 1);
+    font-size: 2rem;
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
+};
+
+/* main container */
+
+.container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+};
+
+
+/* card styling */
+
+.employee-card {
+    /* display: flex; */
+    flex: 1;
+    /* flex-direction: column; */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
+    width: 15rem;
+    margin: 1rem;
+};
+
+.employee-title {
+    /* display: flex; */
+    text-align: center;
+    background-color: rgba(89, 171, 227, 1);
+    font-size: 1rem;
+    color: white;
+    border-bottom: 4px solid rgba(108, 122, 137, .5);
+};
+
+.employee-info {
+    /* display: flex; */
+    margin: .5rem;
 }
