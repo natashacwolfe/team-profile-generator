@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+function renderHeader(){
+    return `
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,12 +14,25 @@
     <div class="container">
         <div class='header'>
             <h1 class="title">My Team</h1>
-        </div>    
-
-        {{ team }}
+        </div>   
+    `
+};
  
 
+function renderFooter() {
+    return `
     </div>
 
-</body>
-</html>
+    </body>
+    </html>
+    `
+};
+
+module.exports = {
+    renderHeader,
+    renderFooter
+}
+
+
+ 
+
