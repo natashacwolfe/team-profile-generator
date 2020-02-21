@@ -7,10 +7,10 @@ const fs = require("fs");
 const jest = require('jest');
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
-const render = require("./lib/htmlRenderer");
+// const render = require("./lib/htmlRenderer");
 
-
-​let prompts = new Employee [
+// let prompts = new Employee [
+let prompts = [
     {
         type: 'input',
         message: 'What is the employee name?',
@@ -33,8 +33,8 @@ const render = require("./lib/htmlRenderer");
         choices: ['Manager', 'Engineer', 'Intern']
     }
 ];
-​
-let managerQuestions = new Manager [
+
+let managerPrompts = [
     {
         type: 'input',
         message: `What is the manager's office number`,
@@ -42,7 +42,7 @@ let managerQuestions = new Manager [
     }
 ];
 
-let engineerQuestions = new Engineer [ 
+let engineerPrompts = [
     {
         type: 'input',
         message: `What is the engineer's GitHub username?`,
@@ -50,7 +50,7 @@ let engineerQuestions = new Engineer [
     }
 ];
 
-let internQuestions = new Intern [
+let internPrompts = [
     {
         type: 'input',
         message: 'What school does the intern attend?',
@@ -62,16 +62,30 @@ let internQuestions = new Intern [
 inquirer
   .prompt(prompts)
   .then(res => {
-      if ( res.role == "manager" ) {
+      console.log(res)
+        return new Employee(employeeInfo)
+      //send to employee.js
+
+      if (res.role === 'Manager') {
           inquirer
-            .prompt(managerQuestions)
+          .prompt(managerPrompts)
+          .then (res => {
+              console.log(res)
+              //send to manager.js
+          }) 
       } 
-      else if ( res.role == "engineer" ) {
+      else if (res.role === 'Engineer') {
           inquirer
-          .promt(engineerQuestions)
+          .prompt(engineerPrompts)
+          .then(res => {
+              console.log(res.github);
+          })
       }
-      else if ( res.role == "intern" ) {
-        inquirer
-        .prompt(internQuestions)
+      else if (res.role === "Intern") {
+          inquirer
+          .prompt(internPrompts)
+          .then(res => {
+              console.log(res.school)
+          })
       }
-  }) 
+    }); 

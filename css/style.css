@@ -1,8 +1,6 @@
 * {
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-
-
 }
 
 /* title top of profile page */
@@ -16,27 +14,27 @@
     font-size: 2rem;
     color: white;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
-};
+}
 
 /* main container */
 
 .container {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
-};
+    justify-content: center;
+}
 
 
 /* card styling */
 
 .employee-card {
-    /* display: flex; */
+    display: flex;
     flex: 1;
-    /* flex-direction: column; */
+    flex-direction: column;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
-    width: 15rem;
+    /* width: 15rem; */
     margin: 1rem;
-};
+}
 
 .employee-title {
     /* display: flex; */
@@ -45,9 +43,17 @@
     font-size: 1rem;
     color: white;
     border-bottom: 4px solid rgba(108, 122, 137, .5);
-};
+}
 
 .employee-info {
     /* display: flex; */
     margin: .5rem;
+}
+
+ul {
+    line-height: 2;
+}
+
+li {
+    list-style: none;
 }
