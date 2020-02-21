@@ -73,9 +73,8 @@ function init(){
                 .prompt(managerPrompts)
                 .then (manRes => {
                     let manager = new Manager (empRes.name, empRes.id, empRes.email, empRes.role, manRes.office);
-                    
                     employeesArray.push(manager);
-
+                    console.log("Employee Array", employeesArray)
                     nextEmployee();
             }) 
         } 
