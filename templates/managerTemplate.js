@@ -10,11 +10,10 @@ function renderManager(managerInfo) {
             <ul class="info-list">
                 <li class='id'>ID: ${managerInfo.id}</li>
                 <li class='email'>Email: <a href="mailto:${managerInfo.email}">${managerInfo.email}</a></li>
-                <li class='office'>Office Number: ${managerInfo.office}</li>
+                <li class='office'>Office Number: ${managerInfo.officeNumber}</li>
             </ul>
     </div>
     </div>
-
     `
 }
 

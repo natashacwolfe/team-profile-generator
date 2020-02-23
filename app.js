@@ -11,6 +11,7 @@ const fs = require("fs");
 const jest = require('jest');
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
+
 // const render = require("./lib/htmlRenderer");
 
 const employeesArray = [];
@@ -43,7 +44,7 @@ let managerPrompts = [
     {
         type: 'input',
         message: `What is the manager's office number`,
-        name: 'office',
+        name: 'officeNumber',
     }
 ];
 
@@ -72,9 +73,10 @@ function init(){
             inquirer
                 .prompt(managerPrompts)
                 .then (manRes => {
-                    let manager = new Manager (empRes.name, empRes.id, empRes.email, empRes.role, manRes.office);
+                    let manager = new Manager (empRes.name, empRes.id, empRes.email, empRes.role, manRes.officeNumber);
                     employeesArray.push(manager);
                     console.log("Employee Array", employeesArray)
+
                     nextEmployee();
             }) 
         } 
@@ -85,7 +87,8 @@ function init(){
                     let engineer = new Engineer (empRes.name, empRes.id, empRes.email, empRes.role, engRes.github);
                     
                 employeesArray.push(engineer);
-                
+                console.log("Employee Array", employeesArray)
+
                 nextEmployee();
             })
         }
@@ -96,11 +99,15 @@ function init(){
                     let intern = new Intern (empRes.name, empRes.id, empRes.email, empRes.role, intRes.school);
 
                     employeesArray.push(intern);
+                    console.log("Employee Array", employeesArray)
 
                     nextEmployee();
             })
         }
     }) 
+    .catch ((err) => {
+        if (err) console.log(err);
+    });
 };
 
 function nextEmployee(){
@@ -121,6 +128,9 @@ function nextEmployee(){
                 process.exit(0)
             }
         })
+        .catch ((err) => {
+            if (err) console.log(err);
+        });
 };
 
 
@@ -130,34 +140,34 @@ function renderHtml() {
     htmlContent = indexTemplate.renderHeader(); 
     for (let i = 0; i < employeesArray.length; i++) {
         switch (employeesArray[i].role) {
-            case "manager" : let managerObj = {
+            case "Manager" : let managerObj = {
                 name : employeesArray[i].getName(),
                 id : employeesArray[i].getId(),
                 email : employeesArray[i].getEmail(),
                 role: employeesArray[i].getRole(),
-                office : employeesArray[i].getOffice()
+                officeNumber : employeesArray[i].getOfficeNumber()
             } 
-
+            console.log(managerObj)
             htmlContent += managerTemplate(managerObj);
             break;
 
-            case "engineer" : let engineerObj = {
+            case "Engineer" : let engineerObj = {
                 name : employeesArray[i].getName(),
                 id : employeesArray[i].getId(),
                 email : employeesArray[i].getEmail(),
                 role: employeesArray[i].getRole(),
-                office : employeesArray[i].getGithub()
+                github : employeesArray[i].getGithub()
             }
 
             htmlContent += engineerTemplate(engineerObj);
             break;
 
-            case "intern" : let internObj = {
+            case "Intern" : let internObj = {
                 name : employeesArray[i].getName(),
                 id : employeesArray[i].getId(),
                 email : employeesArray[i].getEmail(),
                 role: employeesArray[i].getRole(),
-                office : employeesArray[i].getSchool()
+                school : employeesArray[i].getSchool()
             }
 
             htmlContent += internTemplate(internObj);
@@ -167,13 +177,9 @@ function renderHtml() {
     console.log(htmlContent)
     htmlContent += indexTemplate.renderFooter();
 
-    fs.writeFile(__dirname, "team.html", htmlContent, function(err, res) {
-        if (err) console.log(err);
-        console.log("File updated!", htmlContent)
-    })
-    .catch(err => {
-        console.log(err)
-    })
+    fs.writeFileSync(outputPath, htmlContent, "utf-8");
+        console.log("File updated!", htmlContent);
+    
 };
 
 init();
