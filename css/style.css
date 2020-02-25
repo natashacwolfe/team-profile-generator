@@ -29,7 +29,7 @@
 
 .employee-card {
     display: flex;
-    flex: 1 0 250px;
+    flex: 0 0 250px;
     flex-direction: column;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
     /* width: 15rem; */
